@@ -1,0 +1,96 @@
+{% extends "main-signedin.html" %}
+{% block content %}
+<div class="col-sm-2">
+<div class="container">
+	<h4>Edit {{manufacturer.name}} {{model.name}} Specifications</h4>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul>
+					{% for message in messages %}
+						<li> <strong> {{ message }} </strong> </li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+<form action="" method = "post"  class="form-horizontal">
+
+   <div class="form-group">
+    <div class="col-sm-3">
+    <label for="phone_name" >Phone Model name:</label>
+	</div>
+	<div class="col-sm-3">
+    <input type="text" class="form-control" value="{{model.name}}" name="phoneModel">
+	</div>
+	
+	</div>
+	
+	 <div class="form-group">
+		<div class="col-sm-3">
+			<label>Size:</label>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.size}}" name="size">
+		</div>
+	 </div>
+	
+	 <div class="form-group">
+	   <div class="col-sm-3">
+			<label>Weight:</label>
+		</div>
+		<div  class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.weight}}" name="weight">
+		</div>
+	 </div>
+	
+	
+	<div class="form-group">
+	  <div class="col-sm-3">
+		<label>Camera: </label>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.camera}}" name="camera">
+		</div>
+	</div>
+	
+	 <div class="form-group">
+	  <div class="col-sm-3">
+		<label>Memory:</label>
+	  </div>
+	  <div class="col-sm-3">
+		<input type="text" class="form-control" value="{{specs.memory}}" name="memory">
+	  </div>
+	 </div>
+	 
+	 <div class="form-group">
+		<div class="col-sm-3">
+			<label>Operating System: </label>
+		</div>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" value="{{specs.os}}" name="os">
+		</div>
+	</div>
+	
+	 <div class="form-group">
+		<div class="col-sm-3">
+		<label>Display: </label>
+		</div>
+	<div class="col-sm-3">
+	<input type="text" class="form-control" value="{{specs.display}}" name="display">
+	</div>
+	</div>
+	
+     <div class="form-group">
+	 <div class="col-sm-3">
+     <button type="submit"class="btn btn-primary btn-xs">Save changes</button>
+     <a href ={{url_for('showPhoneSpecs',manufacturer_id=manufacturer.id,model_id=model.id)}} class="btn btn-primary btn-xs" role="button">
+					Cancel
+					</a>
+	</div>
+	</div>
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+</form>
+
+</div>
+</div>
+{% endblock %}
